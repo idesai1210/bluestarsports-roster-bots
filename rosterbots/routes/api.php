@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Team Routes
 
 Route::get('teams', 'TeamsController@getAll');
+Route::post('teams', 'TeamsController@create');
+Route::put('teams/{team}', 'TeamsController@update');
+Route::delete('teams/{team}', 'TeamsController@delete');
