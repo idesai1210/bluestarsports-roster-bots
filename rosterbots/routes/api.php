@@ -21,5 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('teams', 'TeamsController@getAll');
 Route::post('teams', 'TeamsController@create');
-Route::put('teams/{team}', 'TeamsController@update');
-Route::delete('teams/{team}', 'TeamsController@delete');
+Route::put('teams/{id}', 'TeamsController@update');
+Route::delete('teams/{id}', 'TeamsController@delete');
+
+
+// Player Routes
+Route::get('players/{name}', 'PlayersController@get');
+Route::post('players', 'PlayersController@create');
+Route::put('players/{id}', 'PlayersController@update');
+Route::delete('players/{id}', 'PlayersController@delete');
+
