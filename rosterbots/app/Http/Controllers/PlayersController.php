@@ -47,6 +47,7 @@ class PlayersController extends Controller
         return response()->json($res, 201);
     }
 
+
     public function update(Request $request, $id){
 
         $player = Player::findOrFail($id);

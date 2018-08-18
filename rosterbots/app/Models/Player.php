@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 18 Aug 2018 00:21:21 +0000.
+ * Date: Sat, 18 Aug 2018 14:25:21 +0000.
  */
 
 namespace App\Models;
@@ -20,6 +20,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $strength
  * @property string $agility
  * @property string $total
+ * @property string $salary
  * @property \Carbon\Carbon $recorodCreatedDate
  * @property \Carbon\Carbon $recordUpdatedDate
  * @property string $deleted
@@ -52,6 +53,7 @@ class Player extends Eloquent
 		'strength',
 		'agility',
 		'total',
+		'salary',
 		'recorodCreatedDate',
 		'recordUpdatedDate',
 		'deleted'
