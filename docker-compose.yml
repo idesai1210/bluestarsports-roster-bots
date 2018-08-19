@@ -1,0 +1,71 @@
+  Skip to content
+
+    Search or jump to…
+
+    Pull requests
+    Issues
+    Marketplace
+    Explore
+    @idesai1210 Sign out
+    8
+    72 33 shakyShane/laravel-docker
+    Code  Issues 3  Pull requests 2  Projects 0  Wiki  Insights
+    laravel-docker/docker-compose.yml
+    248a8b6  on Jan 6, 2017
+    @shakyShane shakyShane fix MYSQL password
+
+    42 lines (37 sloc)  711 Bytes
+  version: '2'
+  services:
+
+    # The Application
+    app:
+      build:
+        context: ./
+        dockerfile: app.dockerfile
+      working_dir: /var/www
+      volumes:
+      - /rosterbots/:/var/www
+      environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+
+    # The Web Server
+    web:
+      build:
+        context: ./
+        dockerfile: web.dockerfile
+      working_dir: /var/www
+      volumes_from:
+      - app
+      ports:
+      - 8080:80
+
+    # The Database
+    database:
+      image: mysql:5.6
+      volumes:
+      - dbdata:/var/lib/mysql
+      environment:
+      - "MYSQL_DATABASE=homestead"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+      ports:
+      - "33061:3306"
+
+  volumes:
+    dbdata:
+    © 2018 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+    Press h to open a hovercard with more details.
