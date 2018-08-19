@@ -23,7 +23,7 @@ services:
     - app
     ports:
     - 8000:80
-  #Mysql
+  #Mysql Server
   mysql:
     container_name: 'mysql'
     restart: 'always'
