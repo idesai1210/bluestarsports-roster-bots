@@ -4,7 +4,7 @@ services:
   # The Application
   app:
     build:
-      context: ./
+      context: ..
       dockerfile: app.dockerfile
     working_dir: /var/www
     volumes:
@@ -16,7 +16,7 @@ services:
   # The Web Server
   web:
     build:
-      context: ./
+      context: ..
       dockerfile: web.dockerfile
     working_dir: /var/www
     volumes_from:
