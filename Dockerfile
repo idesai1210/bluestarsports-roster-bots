@@ -12,7 +12,6 @@ FROM php:7
 
 
 RUN docker-php-ext-install pdo_mysql
-RUN a2enmod rewrite
 
 ADD /rosterbots /var/www
 ADD /rosterbots/public /var/www/html
