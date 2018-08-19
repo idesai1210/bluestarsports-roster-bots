@@ -23,16 +23,3 @@ services:
     - app
     ports:
     - 8000:80
-  #Mysql Server
-  mysql:
-    container_name: 'mysql'
-    restart: 'always'
-    image: 'mysql:5.7'
-    volumes:
-    - '/data/mysql:/var/lib/mysql'
-    environment:
-      MYSQL_USER: 'root'
-      MYSQL_ROOT_PASSWORD: 'rootpassword'
-      MYSQL_DATABASE: 'RosterBots'
-    ports:
-    - '3306:3306'
