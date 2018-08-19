@@ -1,4 +1,4 @@
-FROM php:7.1.20-cli
+FROM php:7.2-cli
 
 RUN apt-get update && apt-get install -y libmcrypt-dev \
     mysql-client libmagickwand-dev --no-install-recommends \
