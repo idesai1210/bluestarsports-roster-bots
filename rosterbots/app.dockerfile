@@ -7,3 +7,4 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-install mcrypt pdo_mysql
 
 RUN chown -R www-data:www-data /var/www
+RUN chmod 755 /var/www
