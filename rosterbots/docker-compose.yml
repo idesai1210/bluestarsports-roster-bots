@@ -19,6 +19,9 @@ services:
       context: ./
       dockerfile: web.dockerfile
     working_dir: /var/www
+    environment:
+    - "DB_PORT=3306"
+    - "DB_HOST=bluestarsports-db.c23saagmlxov.us-east-1.rds.amazonaws.com"
     volumes_from:
     - app
     ports:
