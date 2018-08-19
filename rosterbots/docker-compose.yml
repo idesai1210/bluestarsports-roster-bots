@@ -11,7 +11,7 @@ services:
     - ./:/var/www
     environment:
     - "DB_PORT=3306"
-    - "DB_HOST=database"
+    - "DB_HOST=bluestarsports-db.c23saagmlxov.us-east-1.rds.amazonaws.com"
 
   # The Web Server
   web:
@@ -23,3 +23,17 @@ services:
     - app
     ports:
     - 8000:80
+
+  mysql:
+    container_name: 'mysql'
+    restart: 'always'
+    image: 'mysql:5.7'
+    volumes:
+    - '/data/mysql:/var/lib/mysql'
+    environment:
+      MYSQL_HOST: 'bluestarsports-db.c23saagmlxov.us-east-1.rds.amazonaws.com'
+      MYSQL_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'rootpassword'
+      MYSQL_DATABASE: 'RosterBots'
+    ports:
+    - '3306:3306'
