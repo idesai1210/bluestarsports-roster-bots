@@ -15,25 +15,26 @@ use Illuminate\Http\Request;
 
 class PlayersController extends Controller
 {
-    public function get($name){
+    public function get($name)
+    {
 
 
         $query = Player::query();
         $player = $query->where('playerName', $name)->get();
 
-        if(isset($player[0])){
-            $res = array(array("result"=>"fail"));
+        if (isset($player[0])) {
+            $res = array(array("result" => "fail"));
             return response()->json($res, 200);
-        }
-        else{
-            $res = array(array("result"=>"Success"));
+        } else {
+            $res = array(array("result" => "Success"));
             return response()->json($res, 200);
         }
 
 
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         $res = new PlayerResource($request);
 
@@ -48,7 +49,8 @@ class PlayersController extends Controller
     }
 
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
         $player = Player::findOrFail($id);
 
@@ -63,7 +65,8 @@ class PlayersController extends Controller
         return response()->json($res, 200);
     }
 
-    public function delete(Request $request, $id){
+    public function delete(Request $request, $id)
+    {
 
         $player = Player::findOrFail($id);
 

@@ -29,7 +29,9 @@ class PlayerResource extends JsonResource
             'salary' => $this->salary
         ];
     }
-    public static function toModel($resource, $player){
+
+    public static function toModel($resource, $player)
+    {
 
         $player->playerName = $resource->playerName;
         $player->teamId = $resource->teamId;
@@ -46,7 +48,9 @@ class PlayerResource extends JsonResource
 
         return $player;
     }
-    public static function create($id, $type, $salary){
+
+    public static function create($id, $type, $salary)
+    {
 
         $player = new Player();
         $player->playerName = self::randomName(15);
@@ -65,30 +69,30 @@ class PlayerResource extends JsonResource
 
     }
 
-    public static function randomName($length) {
-        $pool = array_merge(range(0,9),range('A', 'Z'));
+    public static function randomName($length)
+    {
+        $pool = array_merge(range(0, 9), range('A', 'Z'));
         $key = "";
-        for($i=0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             $key .= $pool[mt_rand(0, count($pool) - 1)];
         }
         return $key;
     }
 
-    public static function randomAbilities(){
+    public static function randomAbilities()
+    {
 
-        $number_of_groups   = 3;
-        $sum_to             = rand(60,100);
+        $number_of_groups = 3;
+        $sum_to = rand(60, 100);
 
-        $groups             = array();
-        $group              = 0;
+        $groups = array();
+        $group = 0;
 
-        while(array_sum($groups) != $sum_to)
-        {
-            $groups[$group] = mt_rand(0, $sum_to/mt_rand(1,3));
+        while (array_sum($groups) != $sum_to) {
+            $groups[$group] = mt_rand(0, $sum_to / mt_rand(1, 3));
 
-            if(++$group == $number_of_groups)
-            {
-                $group  = 0;
+            if (++$group == $number_of_groups) {
+                $group = 0;
             }
         }
 
@@ -96,17 +100,16 @@ class PlayerResource extends JsonResource
 
     }
 
-    public static function randomSalary($number_of_groups, $sum_to){
+    public static function randomSalary($number_of_groups, $sum_to)
+    {
         $salaries = array();
         $salary = 0;
 
-        while(array_sum($salaries) != $sum_to)
-        {
-            $salaries[$salary] = mt_rand(1, $sum_to/mt_rand(1,$number_of_groups));
+        while (array_sum($salaries) != $sum_to) {
+            $salaries[$salary] = mt_rand(1, $sum_to / mt_rand(1, $number_of_groups));
 
-            if(++$salary == $number_of_groups)
-            {
-                $salary  = 0;
+            if (++$salary == $number_of_groups) {
+                $salary = 0;
             }
         }
         return $salaries;

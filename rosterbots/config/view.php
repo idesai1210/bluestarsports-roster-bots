@@ -13,10 +13,13 @@ return [
     |
     */
 
+//    'paths' => [
+//        resource_path('views'),
+//    ],
+//
     'paths' => [
-        resource_path('views'),
+        realpath(base_path('public/views')), //put all views to public for AngularJS use
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

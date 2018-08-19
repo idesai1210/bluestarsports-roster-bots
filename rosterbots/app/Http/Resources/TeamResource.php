@@ -20,7 +20,8 @@ class TeamResource extends JsonResource
         ];
     }
 
-    public static function toModel($resource, $team){
+    public static function toModel($resource, $team)
+    {
         $team->teamName = $resource->teamName;
 
         $now = new \DateTime();
