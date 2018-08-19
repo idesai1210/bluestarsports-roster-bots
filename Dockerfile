@@ -1,5 +1,5 @@
 FROM php:7
-RUN yum update -y && yum install -y openssl zip unzip git
+RUN /usr/bin/yum update -y && /usr/bin/yumyum install -y openssl zip unzip git
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo mbstring
 WORKDIR /app
