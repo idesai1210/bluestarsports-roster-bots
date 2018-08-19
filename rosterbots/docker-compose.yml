@@ -31,7 +31,6 @@ services:
     volumes:
     - '/data/mysql:/var/lib/mysql'
     environment:
-      MYSQL_HOST: 'bluestarsports-db.c23saagmlxov.us-east-1.rds.amazonaws.com'
       MYSQL_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'rootpassword'
       MYSQL_DATABASE: 'RosterBots'
