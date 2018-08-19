@@ -18,3 +18,4 @@ ADD /rosterbots/public /var/www/html
 
 #ADD config/docker/apache.conf /etc/apache2/httpd.conf
 #COPY config/docker/php.ini /usr/local/etc/php/
+
