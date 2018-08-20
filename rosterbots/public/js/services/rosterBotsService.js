@@ -25,6 +25,9 @@ app.factory('rosterBotsService', ['$http', function ($http) {
         createRandomPlayers: function (teamId) {
             return $http.get(api_v1 + 'teams/' + teamId + '/create');
         },
+        createOneRandomPlayer: function(teamId){
+            return $http.get(api_v1 + 'teams/' + teamId + '/createone');
+        },
         delete: function (teamId) {
             return $http.delete(api_v1 + 'teams' + '/' + teamId);
         },

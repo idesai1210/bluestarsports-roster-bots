@@ -12,7 +12,7 @@
         </div>
         <br>
         <br>
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-12">
             <br>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
@@ -22,6 +22,9 @@
                         <tr>
                             <th data-field="teamId">ID</th>
                             <th data-field="teamName">Team Name</th>
+                            <th data-field="starters">Starters</th>
+                            <th data-field="substitutes">Substitutes</th>
+                            <th data-field="salary">Team Salary</th>
                             <th data-field="Settings">Settings</th>
                         </tr>
 
@@ -35,8 +38,23 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="javascript:void(0);" ng-click="delete(t.teamId)" title="See Details">
+                                <a href="/players/{{t.teamId}}" title="See Details">
                                     {{t.teamName}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/players/{{t.teamId}}" title="See Details">
+                                    {{t.starters}} of 10
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/players/{{t.teamId}}" title="See Details">
+                                    {{t.substitutes}} of 5
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/players/{{t.teamId}}" title="See Details">
+                                    {{t.salary}}
                                 </a>
                             </td>
                             <td>

@@ -22,7 +22,7 @@ class PlayerResource extends JsonResource
             'playerId' => $this->playerId,
             'playerName' => $this->playerName,
             'teamId' => $this->teamId,
-            'playerTypeId' => $this->playerTypeId,
+            'playerType' => new PlayerTypeResource($this->player_type()->get()->first()),
             'speed' => $this->speed,
             'strength' => $this->strength,
             'agility' => $this->agility,
@@ -54,7 +54,7 @@ class PlayerResource extends JsonResource
     {
 
         $player = new Player();
-        $player->playerName = self::randomName(15);
+        $player->playerName = self::randomName(10);
         $player->teamId = $id;
         $playerType = PlayerType::query();
         $playerType = $playerType->where('playerTypeDetails', $type)->get();
