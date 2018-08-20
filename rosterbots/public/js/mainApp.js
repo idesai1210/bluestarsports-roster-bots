@@ -8,7 +8,7 @@ app.config(['$locationProvider', function ($locationProvider) {
 app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsService', '$routeParams', function ($scope, $http, toastr, rosterBotsService, $routeParams) {
     var initializeTodos = function () {
         rosterBotsService.getActiveTeams().then(function (data) {
-            $scope.teams = data.data;
+            $scope.teams = data.data.records;
             $scope.anyActiveTeams = $scope.teams.length;
             console.log($scope.teams);
         });
@@ -26,8 +26,11 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
 
             initializeTodos();
             $scope.teams.push({
-                teamId: data.teamId,
-                teamName: input
+                teamId: data.data.records.teamId,
+                teamName: input,
+                starters: data.data.records.starters,
+                substitutes: data.data.records.substitutes,
+                salary: data.data.records.salary
             });
         }, function () {
             toastr.error('Something went wrong. Please try again', 'Fail');
@@ -77,6 +80,26 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
 
     $scope.fill = function () {
         rosterBotsService.createRandomPlayers($scope.teamId).then(function (data) {
+            //$scope.players = data.data.records;
+            toastr.success('Successfully added!', 'Success');
+            initializeTodos();
+            $scope.players.push({
+                playerId: data.data.records.playerId,
+                playerName: data.data.records.playerName,
+                playerTypeId: data.data.records.playerTypeId,
+                speed: data.data.records.speed,
+                strength: data.data.records.strength,
+                agility: data.data.records.agility,
+                total: data.data.records.total,
+                salary: data.data.records.salary
+            });
+        }, function () {
+            toastr.error('Something went wrong. Please try again', 'Fail');
+        });
+    }
+
+    $scope.createOne = function(){
+        rosterBotsService.createOneRandomPlayer($scope.teamId).then(function (data) {
             //$scope.players = data.data.records;
             toastr.success('Successfully added!', 'Success');
             initializeTodos();

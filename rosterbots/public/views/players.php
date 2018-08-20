@@ -9,8 +9,15 @@
             </div>
             <br>
             <div>
-                <button type="button" ng-click="delete(team.teamId)" class="btn btn-info">Create a Player</button>
+                <button type="button" ng-click="createOne(team.teamId)" class="btn btn-info">Create a Player</button>
                 <button type="button" ng-click="fill(team.teamId)" class="btn btn-info">Fill the Line Up</button>
+            </div>
+            <br>
+            <div>
+                <span class="label label-success">Starters  <span class="badge"> {{team.starters}}</span></span>
+                <span class="label label-warning">Substitutes  <span class="badge"> {{team.substitutes}}</span></span>
+<!--                <button type="button" class="btn btn-primary">Starters <span class="badge">{{team.starters}}</span></button>-->
+<!--                <button type="button" class="btn btn-primary">Substitutes <span class="badge">{{team.substitutes}}</span></button>-->
             </div>
         </div>
         <div>
@@ -18,7 +25,7 @@
         </div>
         <br>
         <br>
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-12">
             <br>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
@@ -50,7 +57,7 @@
                             </td>
                             <td>
 
-                                {{p.playerTypeId}}
+                                {{p.playerType.playerTypeDetails}}
 
                             </td>
                             <td>
@@ -69,6 +76,9 @@
 
                             </td>
                             <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={{p.total}} aria-valuemin="0" aria-valuemax="100" style="width: {{p.total}}%"></div>
+                                </div>
 
                                 {{p.total}}
 

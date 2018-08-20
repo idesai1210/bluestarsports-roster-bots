@@ -23,6 +23,7 @@ Route::get('teams', 'TeamsController@getAll');
 Route::get('teams/{id}', 'TeamsController@getById');
 Route::get('teams/{id}/players', 'TeamsController@getAllPlayers');
 Route::get('teams/{id}/create', 'TeamsController@createRandom');
+Route::get('teams/{id}/createone', 'TeamsController@createOneRandom');
 Route::post('teams', 'TeamsController@create');
 Route::put('teams/{id}', 'TeamsController@update');
 Route::delete('teams/{id}', 'TeamsController@delete');

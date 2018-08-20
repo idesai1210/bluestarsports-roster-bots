@@ -15,8 +15,15 @@ class TeamResource extends JsonResource
 {
     public function toArray($request)
     {
+        $starterCount = $this->players()->where('playerTypeId', 1)->where('deleted', 'N')->count();
+        $substituteCount = $this->players()->where('playerTypeId', 2)->where('deleted', 'N')->count();
+        $salary = $this->players()->groupBy('teamId')->where('deleted', 'N')->sum('salary');
         return [
-            'teamName' => $this->teamName
+            'teamId' => $this->teamId,
+            'teamName' => $this->teamName,
+            'starters' => $starterCount,
+            'substitutes' => $substituteCount,
+            'salary' => $salary
         ];
     }
 
