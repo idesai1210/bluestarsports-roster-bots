@@ -6,6 +6,4 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-enable imagick \
     && pecl install mcrypt-1.0.1 \
     &&   docker-php-ext-enable mcrypt
-
-RUN chown -R www-data:www-data /var/www
-RUN chmod 755 /var/www
+    && docker-php-ext-install pdo_mysql
