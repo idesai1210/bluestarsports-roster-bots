@@ -94,6 +94,7 @@ class TeamsController extends Controller
         $player = null;
 
 
+
         while($player == null) {
             $rand = rand ( 1 , 100);
             //even starter // odd sub
