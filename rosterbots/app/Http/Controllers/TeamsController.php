@@ -91,7 +91,6 @@ class TeamsController extends Controller
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
 
-
         $player = null;
 
 
