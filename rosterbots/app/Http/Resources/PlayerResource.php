@@ -13,6 +13,7 @@ use App\Models\Player;
 use App\Models\PlayerType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+
 class PlayerResource extends JsonResource
 {
     public function toArray($request)
