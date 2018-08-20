@@ -13,7 +13,7 @@ services:
     - "DB_PORT=3306"
     - "DB_HOST=bluestarsports-db.c23saagmlxov.us-east-1.rds.amazonaws.com"
 
-  # The Web Server
+  # The Web Server Test
   web:
     build:
       context: ./
