@@ -40,6 +40,7 @@
                             <th data-field="strength">Strength</th>
                             <th data-field="agility">Agility</th>
                             <th data-field="total">Total</th>
+                            <th data-field="total">Attributes</th>
                             <th data-field="Salary">Salary</th>
                             <th data-field="settings">Settings</th>
                         </tr>
@@ -75,12 +76,10 @@
                                 {{p.agility}}
 
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={{p.total}} aria-valuemin="0" aria-valuemax="100" style="width: {{p.total}}%"></div>
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={{p.total}} aria-valuemin="0" aria-valuemax="100" style="width: {{p.total}}%">{{p.total}}</div>
                                 </div>
-
-                                {{p.total}}
 
                             </td>
                             <td>
