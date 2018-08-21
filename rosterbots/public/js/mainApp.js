@@ -7,6 +7,7 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
             $scope.teams = data.data.records;
             $scope.anyActiveTeams = $scope.teams.length;
         });
+        $scope.index = 0;
     }
 
     initializeTodos();
@@ -63,7 +64,7 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
             $scope.totalPlayers = $scope.players.length;
         });
 
-        $scope.createOnePlayer = "Create a Player";
+        $scope.createOnePlayer = "Create New Player";
         $scope.fillLineUp = "Fill Line Up";
         $scope.deleteLineUp = "Delete Line Up";
     }
@@ -122,7 +123,7 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
                 initializeTodos();
             }else {
                 $scope.enable = "true";
-                $scope.createOnePlayer = "Create a Player";
+                $scope.createOnePlayer = "Create New Player";
                 toastr.success('Successfully added!', 'Success');
                 initializeTodos();
                 $scope.players.push({

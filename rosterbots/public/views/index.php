@@ -43,7 +43,18 @@
 
     <!-- This is a copy of palette.js -->
     <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
+    <style type="text/css">
+        table,
+        thead,
+        tr,
+        tbody,
+        th,
+        td {
+            text-align: center;
+        }
 
+
+    </style>
 </head>
 <body ng-app="mainApp">
 <div class="container">

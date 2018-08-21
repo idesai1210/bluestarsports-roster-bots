@@ -24,8 +24,8 @@
             </div>
             <br>
             <div>
-                <span class="label label-success">Starter  <span class="badge"> {{team.starters}}</span></span>
-                <span class="label label-warning">Substitute  <span class="badge"> {{team.substitutes}}</span></span>
+                <span class="label label-success">Starters  <span class="badge"> {{team.starters}}</span></span>
+                <span class="label label-warning">Substitutes  <span class="badge"> {{team.substitutes}}</span></span>
 <!--                <button type="button" class="btn btn-primary">Starters <span class="badge">{{team.starters}}</span></button>-->
 <!--                <button type="button" class="btn btn-primary">Substitutes <span class="badge">{{team.substitutes}}</span></button>-->
             </div>
@@ -43,6 +43,10 @@
                         <div class="form-group">
                             <label >Search</label>
                             <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                        </div>
+                        <div>
+                            <label style="float: left">Click on team name to view its roster</label>
+                            <label style="float: right">Click on column header to sort</label>
                         </div>
                     </form>
                     <table class="table" datatable="ng" dt-options="vm.dtOptions" id="table">
@@ -79,7 +83,7 @@
                         <tbody>
                         <tr ng-repeat="p in players|orderBy:sortKey:reverse|filter:search">
                             <td>
-                                {{p.playerId}}
+                               {{$index+1}}
                             </td>
                             <td>
 
