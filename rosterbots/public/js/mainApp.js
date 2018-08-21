@@ -1,9 +1,5 @@
-var app = angular.module('mainApp', ['mainRoutes', 'rosterBotsService', 'ngAnimate', 'toastr', 'ui.bootstrap']);
+var app = angular.module('mainApp', ['mainRoutes', 'rosterBotsService', 'ngAnimate', 'toastr', 'ui.bootstrap','angularUtils.directives.dirPagination']);
 
-app.config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.hashPrefix('');
-    $locationProvider.html5Mode(true);
-}]);
 
 app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsService', '$routeParams', function ($scope, $http, toastr, rosterBotsService, $routeParams) {
     var initializeTodos = function () {
@@ -15,6 +11,11 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
     }
 
     initializeTodos();
+
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
 
     $scope.addTeam = function () {
         var input = $scope.myinput;
@@ -69,18 +70,28 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
             console.log($scope.players);
         });
 
-
+        $scope.createOnePlayer = "Create a Player";
+        $scope.fillLineUp = "Fill Line Up";
     }
 
     initializeTodos();
+
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
 
     $scope.goBack = function () {
         window.history.back();
     };
 
     $scope.fill = function () {
+        $scope.fillLineUp = "Filling Team Sheet...";
+        $scope.enable1 = "false";
         rosterBotsService.createRandomPlayers($scope.teamId).then(function (data) {
             //$scope.players = data.data.records;
+            $scope.enable1 = "true";
+            $scope.createOnePlayer = "Fill Line Up";
             toastr.success('Successfully added!', 'Success');
             initializeTodos();
             $scope.players.push({
@@ -99,8 +110,12 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
     }
 
     $scope.createOne = function(){
+        $scope.createOnePlayer = "Creating...";
+        $scope.enable = "false";
         rosterBotsService.createOneRandomPlayer($scope.teamId).then(function (data) {
             //$scope.players = data.data.records;
+            $scope.enable = "true";
+            $scope.createOnePlayer = "Create a Player";
             toastr.success('Successfully added!', 'Success');
             initializeTodos();
             $scope.players.push({

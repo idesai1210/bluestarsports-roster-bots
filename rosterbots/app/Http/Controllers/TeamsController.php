@@ -71,6 +71,7 @@ class TeamsController extends Controller
 
         return response()->json($res, 201);
     }
+
     public function createOneRandom($id){
         $team = Team::findOrFail($id);
 
@@ -91,18 +92,16 @@ class TeamsController extends Controller
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
 
-
         $player = null;
-
 
         while($player == null) {
             $rand = rand ( 1 , 100);
             //even starter // odd sub
             if ($rand % 2 == 0 && $starter > 0 && $sum_to > 0) {
-                $player = PlayerResource::create($id, 'Starters', array_pop($salaries));
+                $player = PlayerResource::create($id, 'Starter', array_pop($salaries));
                 $player->save();
-            } else if ($rand % 2 != 0 && $starter > 0 && $sum_to > 0) {
-                $player = PlayerResource::create($id, 'Substitutes', array_pop($salaries));
+            } else if ($rand % 2 != 0 && $subs > 0 && $sum_to > 0) {
+                $player = PlayerResource::create($id, 'Substitute', array_pop($salaries));
                 $player->save();
             }
         }
@@ -138,12 +137,12 @@ class TeamsController extends Controller
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
         for ($s = 0; $s < $starter; $s++) {
-            $player = PlayerResource::create($id, 'Starters', array_pop($salaries));
+            $player = PlayerResource::create($id, 'Starter', array_pop($salaries));
             $player->save();
         }
 
         for ($s = 0; $s < $subs; $s++) {
-            $player = PlayerResource::create($id, 'Substitutes', array_pop($salaries));
+            $player = PlayerResource::create($id, 'Substitute', array_pop($salaries));
             $player->save();
         }
 

@@ -11,6 +11,7 @@ namespace App\Http\Resources;
 
 use App\Models\Player;
 use App\Models\PlayerType;
+use App\Models\Team;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -54,16 +55,35 @@ class PlayerResource extends JsonResource
     {
 
         $player = new Player();
+
         $player->playerName = self::randomName(10);
         $player->teamId = $id;
+
         $playerType = PlayerType::query();
         $playerType = $playerType->where('playerTypeDetails', $type)->get();
         $player->playerTypeId = $playerType[0]->playerTypeId;
+
+        $team = Team::findOrFail($id);
         $groups = self::randomAbilities();
         $player->speed = $groups[0];
         $player->strength = $groups[1];
         $player->agility = $groups[2];
         $player->total = $player->speed + $player->strength + $player->agility;
+
+        $p = $team->players()->where('total', $player->total)->count();
+
+
+        while($p == 1){
+            $groups = self::randomAbilities();
+            $player->speed = $groups[0];
+            $player->strength = $groups[1];
+            $player->agility = $groups[2];
+            $player->total = $player->speed + $player->strength + $player->agility;
+            $p = $team->players()->where('total', $player->total)->count();
+
+        }
+
+
         $player->salary = $salary;
 
         return $player;
@@ -83,19 +103,13 @@ class PlayerResource extends JsonResource
     public static function randomAbilities()
     {
 
-        $number_of_groups = 3;
-        $sum_to = rand(60, 100);
-
         $groups = array();
         $group = 0;
+        $sum_to = 100;
 
-        while (array_sum($groups) != $sum_to) {
-            $groups[$group] = mt_rand(0, $sum_to / mt_rand(1, 3));
-
-            if (++$group == $number_of_groups) {
-                $group = 0;
-            }
-        }
+        $groups[0] = rand(15 , $sum_to/3);
+        $groups[1] = rand(15, $sum_to/3);
+        $groups[2] = rand(15, $sum_to/3);
 
         return $groups;
 

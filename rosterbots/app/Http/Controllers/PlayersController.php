@@ -32,6 +32,17 @@ class PlayersController extends Controller
 
 
     }
+    public function getAll(){
+        $query = Player::query();
+        $player = $query->where('deleted', 'N')->get();
+
+        $count = count($player);
+
+        $players = (object)['records' => PlayerResource::collection($player), 'count' => $count];
+
+
+        return response()->json($players, 200);
+    }
 
     public function create(Request $request)
     {
