@@ -1,9 +1,5 @@
 var app = angular.module('mainApp', ['mainRoutes', 'rosterBotsService', 'ngAnimate', 'toastr', 'ui.bootstrap','angularUtils.directives.dirPagination']);
 
-app.config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.hashPrefix('');
-    $locationProvider.html5Mode(true);
-}]);
 
 app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsService', '$routeParams', function ($scope, $http, toastr, rosterBotsService, $routeParams) {
     var initializeTodos = function () {

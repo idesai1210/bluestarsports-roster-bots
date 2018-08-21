@@ -5,7 +5,7 @@
  */
 var app = angular.module('mainRoutes', ['ngRoute']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         controller: 'mainController',
         templateUrl: '../views/main.php'

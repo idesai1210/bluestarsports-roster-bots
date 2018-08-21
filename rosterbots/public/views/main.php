@@ -21,6 +21,7 @@
                             <label >Search</label>
                             <input type="text" ng-model="search" class="form-control" placeholder="Search">
                         </div>
+                        <label>Click on Team name to interact</label>
                     </form>
                     <table class="table" id="table">
                         <thead>
@@ -48,27 +49,27 @@
                         <tbody>
                         <tr ng-repeat="t in teams|orderBy:sortKey:reverse|filter:search">
                             <td>
-                                <a href="/players/{{t.teamId}}" title="See Details">
+                                <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.teamId}}
                                 </a>
                             </td>
                             <td>
-                                <a href="/players/{{t.teamId}}" title="See Details">
+                                <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.teamName}}
                                 </a>
                             </td>
                             <td>
-                                <a href="/players/{{t.teamId}}" title="See Details">
+                                <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.starters}} of 10
                                 </a>
                             </td>
                             <td>
-                                <a href="/players/{{t.teamId}}" title="See Details">
+                                <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.substitutes}} of 5
                                 </a>
                             </td>
                             <td>
-                                <a href="/players/{{t.teamId}}" title="See Details">
+                                <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.salary}}
                                 </a>
                             </td>
