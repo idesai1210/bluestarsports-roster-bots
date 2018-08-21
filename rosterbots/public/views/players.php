@@ -10,11 +10,11 @@
             <br>
             <div>
                 <button type="button" ng-click="createOne(team.teamId)" class="btn btn-info" ng-disabled="enable=='false'">
-                    <span ng-show="createOnePlayer == 'Creating...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                    <span ng-show="createOnePlayer == 'Creating...'"><i class="far fa-sync-alt spinning"></i></span>
                     {{ createOnePlayer }}
                 </button>
                 <button type="button" ng-click="fill(team.teamId)" class="btn btn-info" ng-disabled="enable1=='false'">
-                    <span ng-show="fillLineUp == 'Filling Team Sheet...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                    <span ng-show="fillLineUp == 'Filling Team Sheet...'"><i class="far fa-sync-alt spinning"></i></span>
                     {{ fillLineUp }}
                 </button>
             </div>
@@ -35,26 +35,45 @@
             <br>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-
-                    <table class="table" id="table">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label >Search</label>
+                            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    <table class="table" datatable="ng" dt-options="vm.dtOptions" id="table">
                         <thead>
                         <tr>
-                            <th data-field="teamId">ID</th>
-                            <th data-field="playerName">Player Name</th>
-                            <th data-field="playerType">Player Type</th>
-                            <th data-field="speed">Speed</th>
-                            <th data-field="strength">Strength</th>
-                            <th data-field="agility">Agility</th>
+                            <th ng-click="sort('playerId')" data-field="playerId">ID
+                                <i class="sort-icon" ng-show="sortKey=='playerId'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th ng-click="sort('playerName')" data-field="playerName">Player Name
+                                <i class="sort-icon" ng-show="sortKey=='playerName'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th ng-click="sort('playerType')" data-field="playerType">Player Type
+                                <i class="sort-icon" ng-show="sortKey=='playerType'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th ng-click="sort('speed')" data-field="speed">Speed
+                                <i class="sort-icon" ng-show="sortKey=='speed'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th ng-click="sort('strength')" data-field="speed">Strength
+                                <i class="sort-icon" ng-show="sortKey=='strength'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th ng-click="sort('agility')" data-field="speed">Agility
+                                <i class="sort-icon" ng-show="sortKey=='agility'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
                             <th data-field="total">Total</th>
                             <th data-field="total">Attributes</th>
-                            <th data-field="Salary">Salary</th>
-                            <th data-field="settings">Settings</th>
+                            <th ng-click="sort('salary')" data-field="salary">Salary
+                                <i class="sort-icon" ng-show="sortKey=='salary'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
+                            </th>
+                            <th data-field="Settings">Settings</th>
                         </tr>
 
                         </thead>
 
                         <tbody>
-                        <tr ng-repeat="p in players">
+                        <tr ng-repeat="p in players|orderBy:sortKey:reverse|filter:search">
                             <td>
                                 {{p.playerId}}
                             </td>
@@ -107,6 +126,11 @@
 
                         </tbody>
                     </table>
+                    <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true" >
+                    </dir-pagination-controls>
                 </div>
 
             </div>

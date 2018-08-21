@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['mainRoutes', 'rosterBotsService', 'ngAnimate', 'toastr', 'ui.bootstrap']);
+var app = angular.module('mainApp', ['mainRoutes', 'rosterBotsService', 'ngAnimate', 'toastr', 'ui.bootstrap','angularUtils.directives.dirPagination']);
 
 app.config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
@@ -15,6 +15,11 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
     }
 
     initializeTodos();
+
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
 
     $scope.addTeam = function () {
         var input = $scope.myinput;
@@ -74,6 +79,11 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
     }
 
     initializeTodos();
+
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
 
     $scope.goBack = function () {
         window.history.back();
