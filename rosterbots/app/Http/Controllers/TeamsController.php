@@ -88,6 +88,13 @@ class TeamsController extends Controller
         $salarySumQuery = Player::query();
         $salarySum = $salarySumQuery->where('teamId', $id)->where('deleted', 'N')->orderBy('teamId')->sum('salary');
         $number_of_groups = $starter + $subs;
+
+        if($number_of_groups == 0){
+            $res = (object)['result' => 'fail'];
+            return response()->json($res, 200);
+        }
+
+
         $sum_to = 175 - $salarySum;
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
@@ -133,7 +140,16 @@ class TeamsController extends Controller
         $salarySumQuery = Player::query();
         $salarySum = $salarySumQuery->where('teamId', $id)->where('deleted', 'N')->orderBy('teamId')->sum('salary');
         $number_of_groups = $starter + $subs;
-        $sum_to = 175 - $salarySum;
+        if($number_of_groups == 0){
+            $res = (object)['result' => 'fail'];
+            return response()->json($res, 200);
+        }
+
+        if($salarySum == 0){
+            $sum_to = rand(120, 175) - $salarySum;
+        }else {
+            $sum_to = rand($salarySum, 175) - $salarySum;
+        }
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
         for ($s = 0; $s < $starter; $s++) {
@@ -185,6 +201,31 @@ class TeamsController extends Controller
         $team->save();
 
         return response()->json(null, 204);
+
+    }
+    public function deleteAllPlayers($id)
+    {
+
+        // Verify Team exists
+        $team = Team::findOrFail($id);
+
+        $players = $team->players()->where('deleted', 'N')->get();
+
+        foreach($players as $p){
+            $p->deleted = 'Y';
+            $now = new \DateTime();
+            $updatedDate = date("Y-m-d H:i:s", $now->getTimestamp());
+            $p->recordUpdatedDate = $updatedDate;
+            $p->save();
+        }
+
+        $players = $team->players()->where('deleted', 'N')->get();
+
+        $count = count($players);
+
+        $res = (object)['records' => PlayerResource::collection($players), 'count' => $count];
+
+        return response()->json($res, 204);
 
     }
 

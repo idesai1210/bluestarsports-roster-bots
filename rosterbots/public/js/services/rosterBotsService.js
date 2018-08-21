@@ -16,6 +16,9 @@ app.factory('rosterBotsService', ['$http', function ($http) {
         getActivePlayersByTeam: function (teamId) {
             return $http.get(api_v1 + 'teams' + '/' + teamId + '/players');
         },
+        deleteAllPlayersByTeam: function(teamId){
+            return $http.delete(api_v1 + 'teams' + '/' + teamId + '/players');
+        },
         get: function () {
             return $http.get(api_v1 + 'teams');
         },

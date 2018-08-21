@@ -56,7 +56,7 @@ class PlayerResource extends JsonResource
 
         $player = new Player();
 
-        $player->playerName = self::randomName(10);
+        $player->playerName = self::randomName(7);
         $player->teamId = $id;
 
         $playerType = PlayerType::query();
@@ -92,11 +92,20 @@ class PlayerResource extends JsonResource
 
     public static function randomName($length)
     {
-        $pool = array_merge(range(0, 9), range('A', 'Z'));
-        $key = "";
-        for ($i = 0; $i < $length; $i++) {
-            $key .= $pool[mt_rand(0, count($pool) - 1)];
+//        $pool = array_merge(range(0, 9), range('A', 'Z'));
+//        $key = "";
+//        for ($i = 0; $i < $length; $i++) {
+//            $key .= $pool[mt_rand(0, count($pool) - 1)];
+//        }
+        $key = '';
+        for ($i = 0; $i < 3; $i++) {
+            $key .= chr(rand(65,90));
         }
+        for ($i = 0; $i < $length-3; $i++) {
+            $key .= rand(0,9);
+        }
+
+
         return $key;
     }
 

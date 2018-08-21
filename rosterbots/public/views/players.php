@@ -17,6 +17,10 @@
                     <span ng-show="fillLineUp == 'Filling Team Sheet...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
                     {{ fillLineUp }}
                 </button>
+                <button type="button" ng-click="deleteAll(team.teamId)" class="btn btn-danger" ng-disabled="enable2=='false'">
+                    <span ng-show="deleteLineUp == 'Removing Players...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                    {{ deleteLineUp }}
+                </button>
             </div>
             <br>
             <div>
