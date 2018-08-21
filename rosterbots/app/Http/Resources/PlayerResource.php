@@ -97,16 +97,20 @@ class PlayerResource extends JsonResource
 //        for ($i = 0; $i < $length; $i++) {
 //            $key .= $pool[mt_rand(0, count($pool) - 1)];
 //        }
-        $key = '';
-        for ($i = 0; $i < 3; $i++) {
-            $key .= chr(rand(65,90));
+
+        $range = range('A', 'Z');
+        $k = '';
+        for($i=0;$i<3;$i++){
+
+            $k .= $range[rand(0,25)];
         }
-        for ($i = 0; $i < $length-3; $i++) {
-            $key .= rand(0,9);
+        for($j=0;$j<4;$j++){
+            $k .= rand(0,9);
         }
 
 
-        return $key;
+
+        return $k;
     }
 
     public static function randomAbilities()
