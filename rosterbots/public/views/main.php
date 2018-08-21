@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container">
         <div class="col-lg-8 col-lg-offset-2">
-            <h1>List of Teams in the League</h1>
+            <h1>List of Teams in The League</h1>
             <form ng-submit="addTeam()">
                 <div class="col-lg-10">
                 <input ng-model="myinput" type="text" name="todo" placeholder="Type a team name and press Enter"
@@ -26,12 +26,15 @@
                             <label >Search</label>
                             <input type="text" ng-model="search" class="form-control" placeholder="Search">
                         </div>
-                        <label>Click on Team name to view Roster</label>
+                        <div>
+                        <label style="float: left">Click on team name to view its roster</label>
+                        <label style="float: right">Click on column header to sort</label>
+                        </div>
                     </form>
                     <table class="table" id="table">
                         <thead>
                         <tr>
-                            <th ng-click="sort('teamId')" data-field="teamId">ID
+                            <th align="text-center" ng-click="sort('teamId')" data-field="teamId">ID
                                 <i class="sort-icon" ng-show="sortKey=='teamId'" ng-class="{'fas fa-chevron-up':reverse,'fas fa-chevron-down':!reverse}"></i>
                             </th>
                             <th ng-click="sort('teamName')" data-field="teamName">Team Name
@@ -53,33 +56,33 @@
 
                         <tbody>
                         <tr ng-repeat="t in teams|orderBy:sortKey:reverse|filter:search">
-                            <td>
+                            <td style="text-align: center">
                                 <a href="/#!/players/{{t.teamId}}" title="See Details">
-                                    {{t.teamId}}
+                                    {{$index+1}}
                                 </a>
                             </td>
-                            <td>
+                            <td style="text-align: center">
                                 <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.teamName}}
                                 </a>
                             </td>
-                            <td>
+                            <td style="text-align: center">
                                 <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.starters}} of 10
                                 </a>
                             </td>
-                            <td>
+                            <td style="text-align: center">
                                 <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.substitutes}} of 5
                                 </a>
                             </td>
-                            <td>
+                            <td style="text-align: center">
                                 <a href="/#!/players/{{t.teamId}}" title="See Details">
                                     {{t.salary}}
                                 </a>
                             </td>
-                            <td>
-                                <a class="lan-remove" href="javascript:void(0);" ng-click="delete(t.teamId)"
+                            <td style="text-align: center">
+                                <a class="lan-remove" style="text-align: center" href="javascript:void(0);" ng-click="delete(t.teamId)"
                                    title="Remove">
                                     <i class="fa fa-trash fa-1x"></i>
                                 </a>
