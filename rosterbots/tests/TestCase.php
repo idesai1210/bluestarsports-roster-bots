@@ -19,7 +19,6 @@ class TestCase extends BaseTestCase
 
         Artisan::call('key:generate');
 
-
         return $app;
     }
 
