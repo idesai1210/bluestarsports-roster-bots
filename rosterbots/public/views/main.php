@@ -3,8 +3,13 @@
         <div class="col-lg-8 col-lg-offset-2">
             <h1>List of Teams in the League</h1>
             <form ng-submit="addTeam()">
+                <div class="col-lg-10">
                 <input ng-model="myinput" type="text" name="todo" placeholder="Type a team name and press Enter"
                        class="form-control input-lg">
+                </div>
+                <div class="col-lg-2">
+                <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Go" />
+                </div>
             </form>
         </div>
         <div>
