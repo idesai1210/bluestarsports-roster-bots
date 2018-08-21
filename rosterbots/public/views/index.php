@@ -44,7 +44,7 @@
     <!-- This is a copy of palette.js -->
     <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
     <style type="text/css">
-        table,
+        h1,table,
         thead,
         tr,
         tbody,
