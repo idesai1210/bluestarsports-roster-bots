@@ -17,25 +17,30 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 
-    $scope.addTeam = function () {
+    $scope.addTeam = function (isValid) {
         var input = $scope.myinput;
+        if(input === ""){
+            toastr.error('Team name cannot be empty. Please enter a valid team name!', 'Fail');
+        }else {
 
-        rosterBotsService.add(input).then(function (data) {
-            $scope.myinput = '';
-            toastr.success('Successfully added!', 'Success');
-            //$scope.anyActiveTodos = true;
+            rosterBotsService.add(input).then(function (data) {
+                $scope.myinput = '';
+                toastr.success('Successfully added!', 'Success');
+                //$scope.anyActiveTodos = true;
 
-            initializeTodos();
-            $scope.teams.push({
-                teamId: data.data.records.teamId,
-                teamName: input,
-                starters: data.data.records.starters,
-                substitutes: data.data.records.substitutes,
-                salary: data.data.records.salary
+                initializeTodos();
+                // $scope.teams.push({
+                //     teamId: data.data.records.teamId,
+                //     teamName: input,
+                //     starters: data.data.records.starters,
+                //     substitutes: data.data.records.substitutes,
+                //     salary: data.data.records.salary
+                // });
+
+            }, function () {
+                toastr.error('Something went wrong. Please try again', 'Fail');
             });
-        }, function () {
-            toastr.error('Something went wrong. Please try again', 'Fail');
-        });
+        }
     }
     $scope.delete = function (id) {
 
@@ -151,16 +156,16 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
             $scope.deleteLineUp = "Delete Line Up";
             toastr.success('Successfully deleted!', 'Success');
             initializeTodos();
-            $scope.players.push({
-                playerId: data.data.records.playerId,
-                playerName: data.data.records.playerName,
-                playerTypeId: data.data.records.playerTypeId,
-                speed: data.data.records.speed,
-                strength: data.data.records.strength,
-                agility: data.data.records.agility,
-                total: data.data.records.total,
-                salary: data.data.records.salary
-            });
+            // $scope.players.push({
+            //     playerId: data.data.records.playerId,
+            //     playerName: data.data.records.playerName,
+            //     playerTypeId: data.data.records.playerTypeId,
+            //     speed: data.data.records.speed,
+            //     strength: data.data.records.strength,
+            //     agility: data.data.records.agility,
+            //     total: data.data.records.total,
+            //     salary: data.data.records.salary
+            // });
         }, function () {
             toastr.error('Something went wrong. Please try again', 'Fail');
         });

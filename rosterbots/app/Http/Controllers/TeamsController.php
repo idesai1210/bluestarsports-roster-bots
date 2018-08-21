@@ -59,9 +59,7 @@ class TeamsController extends Controller
     public function create(Request $request)
     {
 
-
         $res = new TeamResource($request);
-
         $team = new Team();
         $team = TeamResource::toModel($res, $team);
 
@@ -95,7 +93,11 @@ class TeamsController extends Controller
         }
 
 
-        $sum_to = 175 - $salarySum;
+        if($salarySum == 0){
+            $sum_to = rand(140, 175) - $salarySum;
+        }else {
+            $sum_to = rand($salarySum, 175) - $salarySum;
+        }
         $salaries = PlayerResource::randomSalary($number_of_groups, $sum_to);
 
 
@@ -146,7 +148,7 @@ class TeamsController extends Controller
         }
 
         if($salarySum == 0){
-            $sum_to = rand(120, 175) - $salarySum;
+            $sum_to = rand(140, 175) - $salarySum;
         }else {
             $sum_to = rand($salarySum, 175) - $salarySum;
         }
