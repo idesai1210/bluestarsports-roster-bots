@@ -20,8 +20,8 @@
             </div>
             <br>
             <div>
-                <span class="label label-success">Starters  <span class="badge"> {{team.starters}}</span></span>
-                <span class="label label-warning">Substitutes  <span class="badge"> {{team.substitutes}}</span></span>
+                <span class="label label-success">Starter  <span class="badge"> {{team.starters}}</span></span>
+                <span class="label label-warning">Substitute  <span class="badge"> {{team.substitutes}}</span></span>
 <!--                <button type="button" class="btn btn-primary">Starters <span class="badge">{{team.starters}}</span></button>-->
 <!--                <button type="button" class="btn btn-primary">Substitutes <span class="badge">{{team.substitutes}}</span></button>-->
             </div>

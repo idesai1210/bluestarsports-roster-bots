@@ -3,7 +3,7 @@
         <div class="col-lg-8 col-lg-offset-2">
             <h1>List of Teams in the Roster!</h1>
             <form ng-submit="addTeam()">
-                <input ng-model="myinput" type="text" name="todo" placeholder="Type a team Name to create a new team..."
+                <input ng-model="myinput" type="text" name="todo" placeholder="Type a team name and press Enter"
                        class="form-control input-lg">
             </form>
         </div>
