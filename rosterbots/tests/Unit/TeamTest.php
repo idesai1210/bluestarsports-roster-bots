@@ -26,5 +26,24 @@ class TeamTest extends TestCase
         $this->json('POST', '/api/teams', $payload)
             ->assertStatus(201);
     }
+    public function testDeleteTeam(){
+        $response = $this->get('/api/teams');
+        $response = json_decode($response->getContent());
+        $res = $response->records[0]->teamId;
+
+        $this->json('DELETE', '/api/teams/'.$res)
+            ->assertStatus(204);
+
+    }
+
+    public function testCreateRandom(){
+        $response = $this->get('/api/teams');
+        $response = json_decode($response->getContent());
+        $res = $response->records[0]->teamId;
+
+        $this->json('GET', '/api/teams/'.$res.'/create')
+            ->assertStatus(200);
+    }
+
 
 }

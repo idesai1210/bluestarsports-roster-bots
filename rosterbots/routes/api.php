@@ -31,6 +31,7 @@ Route::delete('teams/{id}', 'TeamsController@delete');
 
 // Player Routes
 Route::get('players/{name}', 'PlayersController@get');
+Route::get('players', 'PlayersController@getAll');
 Route::post('players', 'PlayersController@create');
 Route::put('players/{id}', 'PlayersController@update');
 Route::delete('players/{id}', 'PlayersController@delete');
