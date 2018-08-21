@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-lg-8 col-lg-offset-2">
             <h1>List Of Teams In The League</h1>
-            <form ng-submit="addTeam()">
+            <form ng-submit="addTeam()" name="team">
                 <div class="col-lg-10">
                 <input ng-model="myinput" type="text" name="todo" placeholder="Type a team name and press Enter"
                        class="form-control input-lg">

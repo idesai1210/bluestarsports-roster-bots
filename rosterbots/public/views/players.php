@@ -45,7 +45,6 @@
                             <input type="text" ng-model="search" class="form-control" placeholder="Search">
                         </div>
                         <div>
-                            <label style="float: left">Click on team name to view its roster</label>
                             <label style="float: right">Click on column header to sort</label>
                         </div>
                     </form>
