@@ -19,7 +19,8 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
 
     $scope.addTeam = function (isValid) {
         var input = $scope.myinput;
-        if(input === ""){
+        
+        if(!input){
             toastr.error('Team name cannot be empty. Please enter a valid team name!', 'Fail');
         }else {
 
