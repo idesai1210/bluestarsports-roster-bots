@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container">
         <div class="col-lg-8 col-lg-offset-2">
-            <h1>List of Teams in the Roster!</h1>
+            <h1>List of Teams in the League</h1>
             <form ng-submit="addTeam()">
                 <input ng-model="myinput" type="text" name="todo" placeholder="Type a team name and press Enter"
                        class="form-control input-lg">
@@ -21,7 +21,7 @@
                             <label >Search</label>
                             <input type="text" ng-model="search" class="form-control" placeholder="Search">
                         </div>
-                        <label>Click on Team name to interact</label>
+                        <label>Click on Team name to view Roster</label>
                     </form>
                     <table class="table" id="table">
                         <thead>

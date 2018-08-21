@@ -27,6 +27,7 @@ Route::get('teams/{id}/createone', 'TeamsController@createOneRandom');
 Route::post('teams', 'TeamsController@create');
 Route::put('teams/{id}', 'TeamsController@update');
 Route::delete('teams/{id}', 'TeamsController@delete');
+Route::delete('teams/{id}/players', 'TeamsController@deleteAllPlayers');
 
 
 // Player Routes

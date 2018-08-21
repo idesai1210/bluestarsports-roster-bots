@@ -6,7 +6,6 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
         rosterBotsService.getActiveTeams().then(function (data) {
             $scope.teams = data.data.records;
             $scope.anyActiveTeams = $scope.teams.length;
-            console.log($scope.teams);
         });
     }
 
@@ -39,9 +38,6 @@ app.controller('mainController', ['$scope', '$http', 'toastr', 'rosterBotsServic
     }
     $scope.delete = function (id) {
 
-        console.log("Team Deleted!");
-        console.log(id);
-
         rosterBotsService.delete(id).then(function () {
 
             initializeTodos();
@@ -61,17 +57,15 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
         rosterBotsService.getById($scope.teamId).then(function (data) {
             $scope.team = data.data;
             //$scope.totalPlayers = $scope.players.length;
-
-            console.log($scope.team);
         });
         rosterBotsService.getActivePlayersByTeam($scope.teamId).then(function (data) {
             $scope.players = data.data.records;
             $scope.totalPlayers = $scope.players.length;
-            console.log($scope.players);
         });
 
         $scope.createOnePlayer = "Create a Player";
         $scope.fillLineUp = "Fill Line Up";
+        $scope.deleteLineUp = "Delete Line Up";
     }
 
     initializeTodos();
@@ -90,20 +84,27 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
         $scope.enable1 = "false";
         rosterBotsService.createRandomPlayers($scope.teamId).then(function (data) {
             //$scope.players = data.data.records;
-            $scope.enable1 = "true";
-            $scope.createOnePlayer = "Fill Line Up";
-            toastr.success('Successfully added!', 'Success');
-            initializeTodos();
-            $scope.players.push({
-                playerId: data.data.records.playerId,
-                playerName: data.data.records.playerName,
-                playerTypeId: data.data.records.playerTypeId,
-                speed: data.data.records.speed,
-                strength: data.data.records.strength,
-                agility: data.data.records.agility,
-                total: data.data.records.total,
-                salary: data.data.records.salary
-            });
+            if(data.data.result == 'fail'){
+                $scope.enable1 = "true";
+                $scope.createOnePlayer = "Fill Line Up";
+                toastr.error('Roster already has 15 Players', 'Fail');
+                initializeTodos();
+            }else {
+                $scope.enable1 = "true";
+                $scope.createOnePlayer = "Fill Line Up";
+                toastr.success('Successfully added!', 'Success');
+                initializeTodos();
+                $scope.players.push({
+                    playerId: data.data.records.playerId,
+                    playerName: data.data.records.playerName,
+                    playerTypeId: data.data.records.playerTypeId,
+                    speed: data.data.records.speed,
+                    strength: data.data.records.strength,
+                    agility: data.data.records.agility,
+                    total: data.data.records.total,
+                    salary: data.data.records.salary
+                });
+            }
         }, function () {
             toastr.error('Something went wrong. Please try again', 'Fail');
         });
@@ -114,9 +115,40 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
         $scope.enable = "false";
         rosterBotsService.createOneRandomPlayer($scope.teamId).then(function (data) {
             //$scope.players = data.data.records;
-            $scope.enable = "true";
-            $scope.createOnePlayer = "Create a Player";
-            toastr.success('Successfully added!', 'Success');
+            if(data.data.result == 'fail'){
+                $scope.enable = "true";
+                $scope.createOnePlayer = "Fill Line Up";
+                toastr.error('Roster already has 15 Players', 'Fail');
+                initializeTodos();
+            }else {
+                $scope.enable = "true";
+                $scope.createOnePlayer = "Create a Player";
+                toastr.success('Successfully added!', 'Success');
+                initializeTodos();
+                $scope.players.push({
+                    playerId: data.data.records.playerId,
+                    playerName: data.data.records.playerName,
+                    playerTypeId: data.data.records.playerTypeId,
+                    speed: data.data.records.speed,
+                    strength: data.data.records.strength,
+                    agility: data.data.records.agility,
+                    total: data.data.records.total,
+                    salary: data.data.records.salary
+                });
+            }
+        }, function () {
+            toastr.error('Something went wrong. Please try again', 'Fail');
+        });
+    }
+
+    $scope.deleteAll = function(){
+
+        $scope.deleteLineUp = "Removing Players..."
+        $scope.enable2 = "false";
+        rosterBotsService.deleteAllPlayersByTeam($scope.teamId).then(function(data){
+            $scope.enable2 = "true";
+            $scope.deleteLineUp = "Delete Line Up";
+            toastr.success('Successfully deleted!', 'Success');
             initializeTodos();
             $scope.players.push({
                 playerId: data.data.records.playerId,
@@ -131,17 +163,15 @@ app.controller('playerController', ['$scope', '$http', 'toastr', 'rosterBotsServ
         }, function () {
             toastr.error('Something went wrong. Please try again', 'Fail');
         });
+
     }
 
     $scope.delete = function (id) {
 
-        console.log("Player Deleted!");
-        console.log(id);
-
         rosterBotsService.deletePlayer(id).then(function () {
 
             initializeTodos();
-            toastr.success('Team deleted!', 'Success');
+            toastr.success('Player deleted!', 'Success');
 
         });
     }
