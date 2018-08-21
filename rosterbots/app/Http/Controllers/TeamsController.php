@@ -71,6 +71,7 @@ class TeamsController extends Controller
 
         return response()->json($res, 201);
     }
+
     public function createOneRandom($id){
         $team = Team::findOrFail($id);
 
@@ -99,7 +100,7 @@ class TeamsController extends Controller
             if ($rand % 2 == 0 && $starter > 0 && $sum_to > 0) {
                 $player = PlayerResource::create($id, 'Starters', array_pop($salaries));
                 $player->save();
-            } else if ($rand % 2 != 0 && $starter > 0 && $sum_to > 0) {
+            } else if ($rand % 2 != 0 && $subs > 0 && $sum_to > 0) {
                 $player = PlayerResource::create($id, 'Substitutes', array_pop($salaries));
                 $player->save();
             }

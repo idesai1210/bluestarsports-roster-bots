@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container">
         <div class="col-lg-8 col-lg-offset-2">
-            <h1>List of Players in the Team: {{team.teamName}}</h1>
+            <h1>{{team.teamName}}</h1>
             <div>
                 <button type="button" ng-click="goBack()" class="btn btn-default"><i class="fas fa-chevron-left"></i> Go
                     back to Teams
@@ -9,8 +9,14 @@
             </div>
             <br>
             <div>
-                <button type="button" ng-click="createOne(team.teamId)" class="btn btn-info">Create a Player</button>
-                <button type="button" ng-click="fill(team.teamId)" class="btn btn-info">Fill the Line Up</button>
+                <button type="button" ng-click="createOne(team.teamId)" class="btn btn-info" ng-disabled="enable=='false'">
+                    <span ng-show="createOnePlayer == 'Creating...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                    {{ createOnePlayer }}
+                </button>
+                <button type="button" ng-click="fill(team.teamId)" class="btn btn-info" ng-disabled="enable1=='false'">
+                    <span ng-show="fillLineUp == 'Filling Team Sheet...'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+                    {{ fillLineUp }}
+                </button>
             </div>
             <br>
             <div>
