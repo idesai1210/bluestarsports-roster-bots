@@ -4,7 +4,7 @@
             <h1>{{team.teamName}}</h1>
             <div>
                 <button type="button" ng-click="goBack()" class="btn btn-default"><i class="fas fa-chevron-left"></i> Go
-                    back to Teams
+                    Back To List Of Teams
                 </button>
             </div>
             <br>
